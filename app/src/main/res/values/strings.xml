@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MentalMath</string>
+    <string name="numero">5</string>
+    <string name="confirmar">confirmar</string>
+    <string name="suma">suma</string>
+    <string name="resta">resta</string>
+    <string name="signo">+</string>
 </resources>

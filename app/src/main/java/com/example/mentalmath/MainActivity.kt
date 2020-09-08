@@ -2,7 +2,6 @@ package com.example.mentalmath
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -39,8 +38,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
     }
     private fun createResta(){
-        numOne.text= ((0..10).random()).toString()
-        numtwo.text= ((0..10).random()).toString()
+        val primer:Int=(0..10).random()
+        numOne.text= primer.toString()
+        numtwo.text= ((0..primer).random()).toString()
         signed.text="-"
 
     }
@@ -48,17 +48,29 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
     private fun enviarResult(){
         val num1: Int =  Integer.parseInt(numOne.text.toString())
         val num2: Int = Integer.parseInt(numtwo.text.toString())
+        val signo=signed.text.toString()
         val res: Int = Integer.parseInt(result.text.toString())
-        if (res == num1+num2 ){
-            Toast.makeText(this, "si verdader", Toast.LENGTH_SHORT).show()
-        }else{
-            result.text.clear()
-            if (signed.text.toString() == "+") {
+        when(signo){
+            "+" -> if (res == num1 + num2) {
+                Toast.makeText(this, "si verdader", Toast.LENGTH_SHORT).show()
+                result.text.clear()
                 createSuma()
-            }else{
+            } else {
+                Toast.makeText(this, "incorrecto", Toast.LENGTH_SHORT).show()
+                result.text.clear()
+                createSuma()
+                    }
+            "-" -> if (res == num1 - num2) {
+                Toast.makeText(this, "correcto", Toast.LENGTH_SHORT).show()
                 createResta()
+                result.text.clear()
+            } else {
+                Toast.makeText(this, "incorrecto", Toast.LENGTH_SHORT).show()
+                createResta()
+                result.text.clear()
             }
         }
+
     }
 
 
