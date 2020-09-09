@@ -1,6 +1,8 @@
 package com.example.mentalmath
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +16,26 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         btn_suma.setOnClickListener(this)
         btn_confirm.setOnClickListener(this)
         btn_resta.setOnClickListener(this)
+        btn_confirm.isEnabled=false
+        result.hint="presione aqui"
         createSuma()
+        result.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                Toast.makeText(this@MainActivity, start.toString(), Toast.LENGTH_SHORT).show()
+                btn_confirm.isEnabled = s!!.isNotEmpty()
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+
+
+            }
+
+        })
 
 
 
@@ -45,32 +66,40 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
     }
 
-    private fun enviarResult(){
-        val num1: Int =  Integer.parseInt(numOne.text.toString())
+    private fun enviarResult() {
+        val num1: Int = Integer.parseInt(numOne.text.toString())
         val num2: Int = Integer.parseInt(numtwo.text.toString())
-        val signo=signed.text.toString()
-        val res: Int = Integer.parseInt(result.text.toString())
-        when(signo){
-            "+" -> if (res == num1 + num2) {
-                Toast.makeText(this, "si verdader", Toast.LENGTH_SHORT).show()
-                result.text.clear()
-                createSuma()
-            } else {
-                Toast.makeText(this, "incorrecto", Toast.LENGTH_SHORT).show()
-                result.text.clear()
-                createSuma()
-                    }
-            "-" -> if (res == num1 - num2) {
-                Toast.makeText(this, "correcto", Toast.LENGTH_SHORT).show()
-                createResta()
-                result.text.clear()
-            } else {
-                Toast.makeText(this, "incorrecto", Toast.LENGTH_SHORT).show()
-                createResta()
-                result.text.clear()
-            }
-        }
+        val signo = signed.text.toString()
+        val res: Int?
+        if (result.text.toString().isNotEmpty()){
+            res=Integer.parseInt(result.text.toString())
+            when (signo) {
+                "+" -> if (res == num1 + num2) {
+                    correctoylimpiar()
+                    createSuma()
+                } else {
+                    incorrectoylimpiar()
+                    createSuma()
+                }
+                "-" -> if (res == num1 - num2) {
+                    correctoylimpiar()
+                    createResta()
+                } else {
+                    incorrectoylimpiar()
+                    createResta()
 
+                }
+            }
+    }
+    }
+
+    private fun incorrectoylimpiar(){
+        Toast.makeText(this, "incorrecto", Toast.LENGTH_SHORT).show()
+        result.text.clear()
+    }
+    private fun correctoylimpiar(){
+        Toast.makeText(this, "correcto", Toast.LENGTH_SHORT).show()
+        result.text.clear()
     }
 
 
