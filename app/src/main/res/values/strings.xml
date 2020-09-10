@@ -5,4 +5,5 @@
     <string name="suma">suma</string>
     <string name="resta">resta</string>
     <string name="signo">+</string>
+    <string name="progreso">Tu Progreso</string>
 </resources>

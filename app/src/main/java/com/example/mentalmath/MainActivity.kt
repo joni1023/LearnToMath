@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,18 +22,13 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         createSuma()
         result.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Toast.makeText(this@MainActivity, start.toString(), Toast.LENGTH_SHORT).show()
                 btn_confirm.isEnabled = s!!.isNotEmpty()
-
             }
 
             override fun afterTextChanged(s: Editable) {
-
-
             }
 
         })
@@ -67,6 +63,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun enviarResult() {
+
         val num1: Int = Integer.parseInt(numOne.text.toString())
         val num2: Int = Integer.parseInt(numtwo.text.toString())
         val signo = signed.text.toString()
@@ -76,6 +73,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
             when (signo) {
                 "+" -> if (res == num1 + num2) {
                     correctoylimpiar()
+                    progressBar.incrementProgressBy(10)
                     createSuma()
                 } else {
                     incorrectoylimpiar()
@@ -83,6 +81,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                 }
                 "-" -> if (res == num1 - num2) {
                     correctoylimpiar()
+                    progressBar.incrementProgressBy(10)
                     createResta()
                 } else {
                     incorrectoylimpiar()
