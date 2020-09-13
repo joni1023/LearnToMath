@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4EAE8"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,41 +11,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="56dp"
         android:text="@string/numero"
         android:textSize="50sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_suma" />
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/numtwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="56dp"
         android:text="@string/numero"
         android:textSize="50sp"
         app:layout_constraintStart_toEndOf="@+id/signed"
-        app:layout_constraintTop_toBottomOf="@+id/btn_resta" />
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <EditText
         android:id="@+id/result"
-        android:layout_width="213dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="52dp"
+        style="@android:style/Widget.Material.Light.EditText"
+        android:layout_width="174dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
-        android:maxLength="2"
         android:inputType="numberSigned"
+        android:maxLength="3"
         android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numtwo" />
 
     <Button
         android:id="@+id/btn_confirm"
-        android:layout_width="269dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        style="@style/buttonstyle.large"
+        android:layout_marginTop="32dp"
+        android:backgroundTintMode="src_atop"
         android:text="@string/confirmar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,20 +52,18 @@
 
     <Button
         android:id="@+id/btn_suma"
-        android:layout_width="150dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
+        style="@style/buttonstyle"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:text="@string/suma"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_resta"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="36dp"
+        style="@style/buttonstyle"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
         android:text="@string/resta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,35 +73,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="56dp"
         android:text="@string/signo"
         android:textSize="50sp"
         app:layout_constraintStart_toEndOf="@+id/numOne"
-        app:layout_constraintTop_toBottomOf="@+id/btn_suma" />
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:progressTint="#B2FF59"
+        android:layout_width="327dp"
+        android:layout_height="29dp"
+        android:progressDrawable="@android:drawable/progress_horizontal"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_confirm"
-        app:layout_constraintVertical_bias="0.143"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.143" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
         android:text="@string/progreso"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_confirm"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.411" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="142dp" />
+
+    <Button
+        android:id="@+id/btn_mult"
+        style="@style/buttonstyle"
+        android:layout_marginStart="40dp"
+        android:enabled="false"
+        android:text="@string/multiplicar"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_suma"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <Button
+        android:id="@+id/btn_div"
+        style="@style/buttonstyle"
+        android:layout_marginEnd="40dp"
+        android:text="@string/division"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_resta"
+        app:layout_constraintVertical_bias="0.451" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

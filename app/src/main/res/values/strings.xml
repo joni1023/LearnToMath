@@ -6,4 +6,6 @@
     <string name="resta">resta</string>
     <string name="signo">+</string>
     <string name="progreso">Tu Progreso</string>
+    <string name="multiplicar">multiplicacion</string>
+    <string name="division">division</string>
 </resources>

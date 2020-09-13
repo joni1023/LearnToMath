@@ -7,4 +7,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="buttonstyle" >
+        <item name="android:background">@drawable/selector_btn</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
+    <style name="buttonstyle.large" parent="buttonstyle">
+        <item name="android:layout_width">270dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:enabled">false</item>
+
+    </style>
 </resources>

@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         btn_suma.setOnClickListener(this)
         btn_confirm.setOnClickListener(this)
         btn_resta.setOnClickListener(this)
-        btn_confirm.isEnabled=false
         result.hint="presione aqui"
         createSuma()
         result.addTextChangedListener(object : TextWatcher {
