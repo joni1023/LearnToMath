@@ -8,4 +8,5 @@
     <string name="progreso">Tu Progreso</string>
     <string name="multiplicar">multiplicacion</string>
     <string name="division">division</string>
+    <string name="nivel">si lo lograste ...</string>
 </resources>
