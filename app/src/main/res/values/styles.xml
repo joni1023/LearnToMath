@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -9,8 +9,9 @@
 
     <style name="buttonstyle" >
         <item name="android:background">@drawable/selector_btn</item>
-        <item name="android:layout_width">150dp</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_margin">2dp</item>
     </style>
 
     <style name="buttonstyle.large" parent="buttonstyle">
@@ -19,7 +20,7 @@
         <item name="android:enabled">false</item>
     </style>
     <style name="textoprimario">
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">@dimen/text_primary_dimen</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
