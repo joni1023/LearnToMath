@@ -13,6 +13,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),View.OnClickListener {
         private var level:Int=0
+        private var operation:String ="+"
+        private lateinit var a:String
+        private lateinit var b:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when (v!!.id){
+        when (v.id){
             R.id.btn_resta -> createResta()
             R.id.btn_suma -> createSuma()
             R.id.btn_confirm -> enviarResult()
@@ -56,24 +59,25 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun createSuma(){
-        numOne.text= ((0..10).random()).toString()
-        numtwo.text= ((0..10).random()).toString()
-        signed.text="+"
+        a= ((0..10).random()).toString()
+        b= ((0..10).random()).toString()
+        operation="+"
+        cuenta.text=a+" "+operation+" "+b
 
     }
     private fun createResta(){
-        val primer:Int=(0..10).random()
-        numOne.text= primer.toString()
-        numtwo.text= ((0..primer).random()).toString()
-        signed.text="-"
+         a= (0..10).random().toString()
+         b= ((0..a.toInt()).random()).toString()
+        operation="-"
+        cuenta.text= a+" "+operation+" "+b
 
     }
 
     private fun createMultiplicacion(){
-        numOne.text=((0..3).random()).toString()
-        numtwo.text=((0..3).random()).toString()
-        signed.text="x"
-
+        a= ((0..10).random()).toString()
+        b= ((0..10).random()).toString()
+        operation="x"
+        cuenta.text=a+" "+operation+" "+b
     }
 
     private  fun createDivision(){
@@ -81,26 +85,21 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         while (true){
             val dividendo:Int=(1..30).random()
             if(dividendo>divisor && dividendo%divisor==0){
-                numOne.text=dividendo.toString()
-                numtwo.text=divisor.toString()
-                signed.text ="/"
+                a=dividendo.toString()
+                b=divisor.toString()
+                operation="/"
+                cuenta.text=a+" "+operation+" "+b
                 break
             }
         }
     }
     private fun enviarResult() {
-        //--lower teclado
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(btn_confirm.windowToken, 0)
-        //---
-        val num1: Int = Integer.parseInt(numOne.text.toString())
-        val num2: Int = Integer.parseInt(numtwo.text.toString())
-        val signo = signed.text.toString()
+
         val res: Int?
         if (result.text.toString().isNotEmpty()){
             res=Integer.parseInt(result.text.toString())
-            when (signo) {
-                "+" -> if (res == num1 + num2) {
+            when (operation) {
+                "+" -> if (res == a.toInt() + b.toInt()) {
                     correctoylimpiar()
                     progressBar.incrementProgressBy(10)
                     createSuma()
@@ -108,7 +107,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                     incorrectoylimpiar()
                     createSuma()
                     }
-                "-" -> if (res == num1 - num2) {
+                "-" -> if (res == a.toInt() - b.toInt()) {
                     correctoylimpiar()
                     progressBar.incrementProgressBy(10)
                     createResta()
@@ -117,7 +116,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                     createResta()
 
                     }
-                "/" -> if(res == num1/num2){
+                "/" -> if(res == a.toInt()/b.toInt()){
                     correctoylimpiar()
                     progressBar.incrementProgressBy(10)
                     createDivision()
@@ -125,7 +124,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                     incorrectoylimpiar()
                     createDivision()
                     }
-                "x" -> if(res == num1*num2){
+                "x" -> if(res == a.toInt()*b.toInt()){
                     correctoylimpiar()
                     progressBar.incrementProgressBy(10)
                     createMultiplicacion()
